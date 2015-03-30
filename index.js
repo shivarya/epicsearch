@@ -5,7 +5,8 @@ var
     mpu : require('./src/percolate/mpu'),
     save_dedup : require('./src/index/dedup'),
     bulk_insert : require('./src/index/bulk'),
-    get_first : require('./src/get')
+    get_first : require('./src/get'),
+    delete_dups : require('./src/delete/dup_deleter')
   }
 
 

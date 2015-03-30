@@ -20,12 +20,15 @@ src/get/index
 Shorthand to get the first document matching for a given key:val pair. Users terms match.
 get_first({index:'test',type:'test',key:'name',val:['master','silv3r']},'sort':{'field_name':'desc'})
 
-**deup_save**
+**save_dedup**
 /src/index/dedup_save
 Workaround for lack of unique id limitation of Elasticsearch. This helps you index docs based on "unique ids"
 
 **bulk_insert**
 Just a short hand for ES bulk_insert 
+
+**delete_dups**
+Iterate over an entire index/type combo and delete all the duplicate for any given field.
 
 This module is being build with <3 while making epicbeat.epictions.com  
 
