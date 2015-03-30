@@ -1,0 +1,35 @@
+{
+  "name": "epicsearch",
+  "version": "1.0.0",
+  "description": "Extensions on top of Elasticsearch in Nodejs. Made with <3. Being used @ epicbeat.epictions.com",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "chai": "^2.2.0",
+    "q": "^1.1.2",
+    "underscore": "^1.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/mastersilv3r/epicsearch.git"
+  },
+  "keywords": [
+    "elasticsearch",
+    "performance",
+    "percolate",
+    "utilities"
+  ],
+  "author": "Silv3r",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mastersilv3r/epicsearch/issues"
+  },
+  "homepage": "https://github.com/mastersilv3r/epicsearch"
+}
