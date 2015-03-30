@@ -1,6 +1,8 @@
 # epicsearch
 Elasticsearch Nodejs client extended
 
+npm install epicsearch
+
 require('epicsearch')
 
 The documentations of methods exposed by index.js is in individual files at the moment. Shall soon improve it and create a wiki  
@@ -16,19 +18,17 @@ Methods exosed
 You can run interesting transformations, or rule based decisions, on top of a steadily flowing input stream of tweets. Allows you to update JSON documents with rules/update logic registered as percolate queries in your Elasticsearch instanced. The update logic has JSON based DSL, which is documented in percolator/mpu.js 
 
 **get_first**  
-src/get/index
 Shorthand to get the first document matching for a given key:val pair. Users terms match.
 get_first({index:'test',type:'test',key:'name',val:['master','silv3r']},'sort':{'field_name':'desc'})
 
 **save_dedup**
-/src/index/dedup_save
 Workaround for lack of unique id limitation of Elasticsearch. This helps you index docs based on "unique ids"
 
 **bulk_insert**
 Just a short hand for ES bulk_insert 
 
 **delete_dups**
-Iterate over an entire index/type combo and delete all the duplicate for any given field.
+Delete all the duplicate from an index/type, for some field.
 
 This module is being build with <3 while making epicbeat.epictions.com  
 
