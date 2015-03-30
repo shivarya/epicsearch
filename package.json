@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "chai": "^2.2.0",
+    "elasticsearch": "^4.0.2",
     "q": "^1.1.2",
     "underscore": "^1.7.0"
   },

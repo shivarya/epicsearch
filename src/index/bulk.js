@@ -2,8 +2,7 @@
 var
   utils = require('../../utils'),
   esClient,
-  _  = require('underscore'),
-  debug  = require('debug')('elasticsearch')
+  _  = require('underscore')
 
 module.exports = function(docs,options) {
   return index(chew(docs,options))
