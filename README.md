@@ -32,4 +32,11 @@ Delete all the duplicate from an index/type, for some field.
 
 This module is being build with <3 while making epicbeat.epictions.com  
 
-More details and updates coming soon!  
+Things to do in this week and next.
+A. Better documentation
+B. Test cases in mocha/chai-as-promised. Current each module has console.log based checks
+C. Some code refactoring 
+D. Adding event emmitter based on document to query match (Percolator)
+E. Add bulk batching on elasticsearch's mget method also
+
+Keep checking out for more updates.  
