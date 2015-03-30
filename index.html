@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Epicsearch : Useful extensions over Elasticsearch in Nodejs">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Epicsearch</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/mastersilv3r/epicsearch">View on GitHub</a>
+
+          <h1 id="project_title">Epicsearch</h1>
+          <h2 id="project_tagline">Useful extensions over Elasticsearch in Nodejs</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/mastersilv3r/epicsearch/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/mastersilv3r/epicsearch/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="epicsearch" class="anchor" href="#epicsearch" aria-hidden="true"><span class="octicon octicon-link"></span></a>epicsearch</h1>
+
+<p>Elasticsearch Nodejs client made more awesome</p>
+
+<p>Being made with love @ epictions. Being used @ epicbeat.epictions.com. 
+Thanks to Epictions for letting me contribute this as a Beehive community project @ Infinity hackbase/Mindgrep. This is a work in progress and if you have any cool addons in mind, shout out, or even better: send me a pull request :) </p>
+
+<p>In hope this is of use to someone out there</p>
+
+<p>*require('epicsearch')</p>
+
+<p>The documentations is in individual files at the moment. I shall soon create a wiki. In short here is a summary of the package</p>
+
+<p>Performance feature</p>
+
+<p><strong>Bulk batching of queries</strong>
+You can aggregate multiple ES requests (of same kind) into configurable batch sizes.
+Just set bulk_params object in the schema specifying what bulk size you want to wait for, for each method, before hitting ES in a single hit. This is a significant performance optimization when you are making hundreds of independent (but same kind of queries like get_first) in one second.
+Currently supporting batching for get_first, bulk_insert and mpu</p>
+
+<p>Methods  </p>
+
+<p><strong>mpu</strong>
+Allows you to update JSON documents with rules/update logic registered as percolate queries in your Elasticsearch instance. This can be useful if you want to transform (lots of) documents with rule based transformations. You can run interesting transformations, or rule based decisions, on top of a steadily flowing input stream like tweets. </p>
+
+<p><strong>get_first</strong>
+src/get/index
+Shorthand to get the first document matching for a given key:val pair. Users terms match.
+get_first({index:'test',type:'test',key:'name',val:['master','silv3r']},'sort':{'field_name':'desc'})</p>
+
+<p>**dedup_save
+/src/index/dedup_save
+Workaround for lack of unique id limitation of Elasticsearch. This helps you index docs based on "unique ids"</p>
+
+<p><strong>bulk_insert</strong>
+Just a short hand for ES bulk_insert.</p>
+
+<p>More details and updates coming soon!</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Epicsearch maintained by <a href="https://github.com/mastersilv3r">mastersilv3r</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
