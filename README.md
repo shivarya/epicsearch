@@ -15,12 +15,11 @@ You can run interesting transformations, or rule based decisions, on top of a st
 
 
 **es.get_first({index:'test',type:'test',key:'name',val:['master','silv3r']},'sort':{'field_name':'desc'}).then**  
-Sometims you want just one document matching a particular key:val pair (especially when you are trying to look for existing documents in elasticsearch, before deciding whether to replace them or get/transform/save them back. This shorthand allows you to retrieve the top document matching all the 'val' values for the given 'key'. It can take optional 'sort' which will decide which document of all the documents matching that value, should be returned, based on the sort.  
+Sometims you want just one document matching a particular key:val pair (especially when you are trying to look for existing documents in elasticsearch, before deciding whether to replace them or get/transform/overwrite them) This shorthand allows you to retrieve one (top) document for each of the 'val' values for the given 'key'. It can take optional 'sort' which will decide which document of all the documents matching given key:value should be returned.  
 
 
 **es.save_dedup({doc:{...},key:"url.unanalyzed",value:"epicbeat.epictions.com",index:"test",type:"test"}).then**  
-Workaround for lack of unique id limitation of Elasticsearch. This helps you index (or override existing) docs based on "unique ids"  called key, and for a given value of that key  
-
+Workaround for lack of unique id limitation of Elasticsearch. This helps you index (or override existing) docs based on "unique ids" stored in the key field.
 
 **es.bulk_insert([{a:2},{a:3,_id:1}],{index:'test',type:'test'}).then**  
 Shorter expression for ES bulk_insert  
@@ -36,7 +35,7 @@ You can aggregate multiple ES requests (of same kind), from different places in 
 **Configuration**  
 Hosts, default_index, and batch sizes can be set in config.json  
 
-This module is being build with <3 while making epicbeat.epictions.com  
+This module is being built with <3 while making epicbeat.epictions.com  
 
 Things to do next  
 A. Better documentation  
