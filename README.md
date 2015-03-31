@@ -3,7 +3,7 @@ Elasticsearch Nodejs client extended
 
 npm install epicsearch
 
-require('epicsearch')
+var es = require('epicsearch')
 
 The documentations of methods exposed by index.js is in individual files at the moment. Shall soon improve it and create a wiki  
 
@@ -18,17 +18,20 @@ Methods exosed
 You can run interesting transformations, or rule based decisions, on top of a steadily flowing input stream of tweets. Allows you to update JSON documents with rules/update logic registered as percolate queries in your Elasticsearch instanced. The update logic has JSON based DSL, which is documented in percolator/mpu.js 
 
 **get_first**  
-Shorthand to get the first document matching for a given key:val pair. Users terms match.
-get_first({index:'test',type:'test',key:'name',val:['master','silv3r']},'sort':{'field_name':'desc'})
+Shorthand to get the first document matching all the supplied values for a given key, and coming top on a given sort. uses term match  
+es.get_first({index:'test',type:'test',key:'name',val:['master','silv3r']},'sort':{'field_name':'desc'}).then...
 
 **save_dedup**
-Workaround for lack of unique id limitation of Elasticsearch. This helps you index docs based on "unique ids"
+Workaround for lack of unique id limitation of Elasticsearch. This helps you index (or override existing) docs based on "unique ids"  called key, and for a given value of that key
+es.save_dedup({doc:{...},key:"url.unanalyzed",value:"epicbeat.epictions.com",index:"test",type:"test"})
 
 **bulk_insert**
-Just a short hand for ES bulk_insert 
+Shorter expression for ES bulk_insert 
+es.bulk_insert([{a:2},{a:3,_id:1}],{index:'test',type:'test'})
 
 **delete_dups**
-Delete all the duplicate from an index/type, for some field.
+Delete all the duplicate from an index/type, for some field  
+es.delete_dups({key:"url",size:1000,del_sort:{fetch_time:"desc"},index:"test",type:"test",multi_key:"url"})
 
 This module is being build with <3 while making epicbeat.epictions.com  
 
