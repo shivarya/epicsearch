@@ -3,11 +3,12 @@ Elasticsearch Nodejs client made epic!
 
 **npm install epicsearch**    
 
-It is elasticsearch nodejs module made ++ 
-You can use this as a drop in replacement of your existing elasticsearch module. Just change the require statements to:  
+It is elasticsearch nodejs module (latest v4.0.2) made ++ 
+
+Just replace require ('elasticsearch') with    
 **var es = require('epicsearch')**  
 
-Now you not only continue to use the same code, you also get some advanced power functionality on top of it!  
+And enjoy some cool functionality on top of what native elasticsearch client provides. 
 
 **es.mpu({query_index: "queries",Docs:docs})**  
 You can run interesting transformations, or rule based decisions, on top of a steadily flowing input stream of tweets. Allows you to update JSON documents with rules/update logic registered as percolate queries in your Elasticsearch instanced. The update logic has JSON based DSL, which is documented in percolator/mpu.js  
@@ -42,6 +43,6 @@ A. Better documentation
 B. Test cases in mocha/chai-as-promised. Current each module has console.log based checks  
 C. Some code refactoring   
 D. Adding event emmitter based on document to query match (Percolator)  
-E. Add bulk batching on elasticsearch's mget method also  
+E. Add bulk batching on all the elasticsearch methods  
 
 Keep checking out for more updates.  
