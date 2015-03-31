@@ -10,23 +10,23 @@ Just replace require ('elasticsearch') with
 
 And enjoy some cool functionality on top of what native elasticsearch client provides. 
 
-**es.mpu({query_index: "queries",Docs:docs})**  
+**es.mpu({query_index: "queries",Docs:docs}).then**  
 You can run interesting transformations, or rule based decisions, on top of a steadily flowing input stream of tweets. Allows you to update JSON documents with rules/update logic registered as percolate queries in your Elasticsearch instanced. The update logic has JSON based DSL, which is documented in percolator/mpu.js  
 
 
 **es.get_first({index:'test',type:'test',key:'name',val:['master','silv3r']},'sort':{'field_name':'desc'}).then**  
-Shorthand to get the first document matching all the supplied values for a given key, and coming top on a given sort. uses term match  
+Sometims you want just one document matching a particular key:val pair (especially when you are trying to look for existing documents in elasticsearch, before deciding whether to replace them or get/transform/save them back. This shorthand allows you to retrieve the top document matching all the 'val' values for the given 'key'. It can take optional 'sort' which will decide which document of all the documents matching that value, should be returned, based on the sort.  
 
 
-**es.save_dedup({doc:{...},key:"url.unanalyzed",value:"epicbeat.epictions.com",index:"test",type:"test"})**  
+**es.save_dedup({doc:{...},key:"url.unanalyzed",value:"epicbeat.epictions.com",index:"test",type:"test"}).then**  
 Workaround for lack of unique id limitation of Elasticsearch. This helps you index (or override existing) docs based on "unique ids"  called key, and for a given value of that key  
 
 
-**es.bulk_insert([{a:2},{a:3,_id:1}],{index:'test',type:'test'})**  
+**es.bulk_insert([{a:2},{a:3,_id:1}],{index:'test',type:'test'}).then**  
 Shorter expression for ES bulk_insert  
 
 
-**es.delete_dups({key:"url",size:1000,del_sort:{fetch_time:"desc"},index:"test",type:"test",multi_key:"url"})**  
+**es.delete_dups({key:"url",size:1000,del_sort:{fetch_time:"desc"},index:"test",type:"test",multi_key:"url"}).then**  
 Delete all the duplicate from an index/type, for some field  
 
 
