@@ -7,7 +7,7 @@ var es = require('../../index.js'),
  *@param key The property on which to do match_phrase query
  *@param val The value to match for given key
  *@param type The ES type of document to be inserted
- *@param index The index to insert in. Default is config.docIndex
+ *@param index The index to insert in. Default is config.doc_index
  */
 module.exports = function(params,config){
   return get(params,config).
@@ -15,7 +15,7 @@ module.exports = function(params,config){
    return es.index({
     type: params.type,
     id: (doc && doc._id),//If we found a document that exists for given key:val pair
-    index: params.index || config.docIndex,
+    index: params.index || config.doc_index,
     body: params.doc 
    }).then(function(es_res){
     return {
