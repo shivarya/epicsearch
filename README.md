@@ -32,6 +32,10 @@ Delete all the duplicate from an index/type, for some field
 **Bulk batching of queries for much better performance**  
 You can aggregate multiple ES requests (of same kind), from different places in your application flow, into batches, without writing any extra code. All the queries shall be batched together, as per a configuration, into a single query to elasticsearch. The size of batch for each function can be individually set in config.json. This is a significant performance optimization when you are making hundreds of independent (but same kind of queries like "get_first") in one second. Currently supporting batching for get_first, bulk_insert and mpu  
 
+**Dumping data to multiple destinations**
+Uncomment the cloneClientParams to also bulk index data into another destination. Useful when you want  copy of your data elsewhere.  
+
+
 **Configuration**  
 Hosts, default_index, and batch sizes can be set in config.json  
 
