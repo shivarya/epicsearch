@@ -1,6 +1,6 @@
 var 
   _ = require('underscore'),
-  aggregate = require('./aggregator'),
+  aggregate = require('./lib/aggregator'),
   fns = {
     mpu : require('./lib/percolate/mpu'),
     save_dedup : require('./lib/index/dedup'),
