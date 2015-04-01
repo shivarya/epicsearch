@@ -2,11 +2,11 @@ var
   _ = require('underscore'),
   aggregate = require('./aggregator'),
   fns = {
-    mpu : require('./src/percolate/mpu'),
-    save_dedup : require('./src/index/dedup'),
-    bulk_insert : require('./src/index/bulk'),
-    get_first : require('./src/get'),
-    delete_dups : require('./src/delete/dup_deleter')
+    mpu : require('./lib/percolate/mpu'),
+    save_dedup : require('./lib/index/dedup'),
+    bulk_insert : require('./lib/index/bulk'),
+    get_first : require('./lib/get'),
+    delete_dups : require('./lib/delete/dup_deleter')
   }
 
 
