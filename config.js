@@ -10,6 +10,7 @@ module.exports =   {
       maxConnections: 200
     },**/
     default_index : 'test',
+    default_type: 'test',
     bulk_params: {
       mpu:2,
       get_first:2,
