@@ -15,8 +15,9 @@ module.exports =   {
       query_index: 'queries'
     },
     bulk_params: {
-      mpu:1,
-      get_first:1,
-      bulk_insert:1 
+      mpu:2,
+      msearch: 2, 
+      get_first:2,
+      bulk_insert:2 
     }
   }
