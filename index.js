@@ -3,7 +3,7 @@ var
   _ = require('underscore'),
   fns = {
     mpu : './lib/percolate/mpu',
-    get_first : './lib/get',
+    get_first : './lib/get/first',
     get_dups : './lib/get/dups',
     delete_dups : './lib/delete/delete_dups',
     find_and_delete_dups : './lib/delete/find_delete_dups',
