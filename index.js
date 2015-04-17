@@ -5,8 +5,10 @@ var
     //mpu : require('./lib/percolate/mpu'),
     //save_dedup : require('./lib/index/dedup'),
     //bulk_insert : require('./lib/index/bulk'),
-    get_first : './lib/get'
-    //delete_dups : require('./lib/delete/dup_deleter')
+    get_first : './lib/get',
+    get_dups : './lib/get/dups',
+    delete_dups : './lib/delete/delete_dups',
+    find_and_delete_dups : './lib/delete/find_delete_dups'
   }
 
 var EpicSearch = function(config){
