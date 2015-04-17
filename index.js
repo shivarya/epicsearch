@@ -4,11 +4,12 @@ var
   fns = {
     //mpu : require('./lib/percolate/mpu'),
     //save_dedup : require('./lib/index/dedup'),
-    //bulk_insert : require('./lib/index/bulk'),
     get_first : './lib/get',
     get_dups : './lib/get/dups',
     delete_dups : './lib/delete/delete_dups',
-    find_and_delete_dups : './lib/delete/find_delete_dups'
+    find_and_delete_dups : './lib/delete/find_delete_dups',
+    index_by_unique: './lib/index/byUniqueKey',
+    bulk_insert : './lib/index/bulk'
   }
 
 var EpicSearch = function(config){
