@@ -2,8 +2,7 @@ var
   elasticsearch = require('elasticsearch'),
   _ = require('underscore'),
   fns = {
-    //mpu : require('./lib/percolate/mpu'),
-    //save_dedup : require('./lib/index/dedup'),
+    mpu : './lib/percolate/mpu',
     get_first : './lib/get',
     get_dups : './lib/get/dups',
     delete_dups : './lib/delete/delete_dups',

@@ -11,9 +11,12 @@ module.exports =   {
     },**/
     default_index : 'test',
     default_type: 'test',
+    percolate:{
+      query_index: 'queries'
+    },
     bulk_params: {
-      mpu:2,
-      get_first:2,
-      bulk_insert:2 
+      mpu:1,
+      get_first:1,
+      bulk_insert:1 
     }
   }
