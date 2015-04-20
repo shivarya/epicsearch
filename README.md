@@ -3,15 +3,18 @@ Elasticsearch Nodejs client made epic!
 
 **npm install epicsearch**    
 
-It is elasticsearch nodejs module (latest v4.0.2) made ++ 
+EpicSearch is ElasticSearch in nodejs (v4.0.2) made ++ 
 
 Just replace require ('elasticsearch') with    
 **var es = require('epicsearch')**  
 
-And enjoy some cool functionality on top of what native elasticsearch client provides. 
+And enjoy some additional functionality on top of what native elasticsearch client provides.  
+
+Just Added a major performance upgrade: bulk batching of important elasticsearch methods like get/mget/bulk_index/search/msearch
+**Note: This documentation is currently outdated. Will update it soon**
 
 **es.mpu({query_index: "queries",Docs:docs}).then**  
-You can run interesting transformations, or rule based decisions, on top of a steadily flowing input stream of tweets. Allows you to update JSON documents with rules/update logic registered as percolate queries in your Elasticsearch instanced. The update logic has JSON based DSL, which is documented in percolator/mpu.js  
+You can do document transformations on top of a steadily flowing input stream of tweets. Allows you to update JSON documents with rules/update logic registered as percolate queries in your Elasticsearch instanced. The update logic has JSON based DSL, which is documented in percolator/mpu.js  
 
 
 **es.get_first({index:'test',type:'test',key:'name',val:['master','silv3r']},'sort':{'field_name':'desc'}).then**  
@@ -43,9 +46,9 @@ This module is being built with <3 while making epicbeat.epictions.com
 
 Things to do next  
 A. Better documentation  
-B. Test cases in mocha/chai-as-promised. Current each module has console.log based checks  
-C. Some code refactoring   
-D. Adding event emmitter based on document to query match (Percolator)  
-E. Add bulk batching on all the elasticsearch methods  
+B. Test cases in mocha/chai-as-promised. Current each module has console.log based checks     
+C. Adding event emmitter based on document to query match (Percolator)  
+D. Add bulk batching on important elasticsearch methods like get/mget/bulk_index/search/msearch [DONE]
+E. Add benchmark results for performance when using this module instead of pure ElasticSearch 4.0.2
 
 Keep checking out for more updates.  

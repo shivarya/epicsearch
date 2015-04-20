@@ -1,6 +1,6 @@
 {
   "name": "epicsearch",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Extensions on top of Elasticsearch in Nodejs. Made with <3. Being used @ epicbeat.epictions.com",
   "main": "index.js",
   "directories": {
