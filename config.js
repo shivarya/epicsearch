@@ -17,6 +17,8 @@ module.exports =   {
     bulk_params: {
       mpu:2,
       msearch: 2, 
+      mget: 2,
+   //   get:2,
       get_first:2,
       bulk_insert:2 
     }

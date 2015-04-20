@@ -2,6 +2,8 @@ var
   elasticsearch = require('elasticsearch'),
   _ = require('underscore'),
   fns = {
+    get: './lib/get/index',
+    mget: './lib/get/mget',
     search: './lib/search/index',
     msearch: './lib/search/multi_search',
     mpu : './lib/percolate/mpu',
