@@ -20,6 +20,6 @@ module.exports =   {
       mget: 2,
    //   get:2,
       get_first:2,
-      bulk_insert:2 
+      bulk_index:2 
     }
   }

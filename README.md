@@ -21,8 +21,8 @@ Sometims you want just one document matching a particular key:val pair (especial
 **es.save_dedup({doc:{...},key:"url.unanalyzed",value:"epicbeat.epictions.com",index:"test",type:"test"}).then**  
 Workaround for lack of unique id limitation of Elasticsearch. This helps you index (or override existing) docs based on "unique ids" stored in the key field.
 
-**es.bulk_insert([{a:2},{a:3,_id:1}],{index:'test',type:'test'}).then**  
-Shorter expression for ES bulk_insert  
+**es.bulk_index([{a:2},{a:3,_id:1}],{index:'test',type:'test'}).then**  
+Shorter expression for ES bulk_index  
 
 
 **es.delete_dups({key:"url",size:1000,del_sort:{fetch_time:"desc"},index:"test",type:"test",multi_key:"url"}).then**  
@@ -30,7 +30,7 @@ Delete all the duplicate from an index/type, for some field
 
 
 **Bulk batching of queries for much better performance**  
-You can aggregate multiple ES requests (of same kind), from different places in your application flow, into batches, without writing any extra code. All the queries shall be batched together, as per a configuration, into a single query to elasticsearch. The size of batch for each function can be individually set in config.json. This is a significant performance optimization when you are making hundreds of independent (but same kind of queries like "get_first") in one second. Currently supporting batching for get_first, bulk_insert and mpu  
+You can aggregate multiple ES requests (of same kind), from different places in your application flow, into batches, without writing any extra code. All the queries shall be batched together, as per a configuration, into a single query to elasticsearch. The size of batch for each function can be individually set in config.json. This is a significant performance optimization when you are making hundreds of independent (but same kind of queries like "get_first") in one second. Currently supporting batching for get_first, bulk_index and mpu  
 
 **Dumping data to multiple destinations**
 Uncomment the cloneClientParams to also bulk index data into another destination. Useful when you want  copy of your data elsewhere.  
