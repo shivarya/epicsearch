@@ -30,7 +30,7 @@ var EpicSearch = function(config){
   this.es.config = config
   
   var Aggregator = require('./lib/aggregator'),
-  aggregator = new Aggregator(config.bulk_params),
+  aggregator = new Aggregator(config),
   es = this.es
 
   _.keys(fns)

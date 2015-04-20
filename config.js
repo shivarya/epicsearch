@@ -14,12 +14,17 @@ module.exports =   {
     percolate:{
       query_index: 'queries'
     },
-    bulk_params: {
+    batch_sizes: {
       mpu:2,
       msearch: 2, 
       mget: 2,
-   //   get:2,
-      get_first:2,
+      get:2,
+      //get_first:2,
       bulk_index:2 
+    },
+    timeouts: {
+      get: 1000,
+      mget: 1000,
+      msearch: 1000
     }
   }
