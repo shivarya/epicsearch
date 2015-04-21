@@ -19,10 +19,12 @@ module.exports =   {
       msearch: 2, 
       mget: 2,
       get:2,
-      //get_first:2,
       bulk_index:2 
     },
     timeouts: {
+      index_by_unique: 1000,
+      get_first:20,
+      bulk_index: 1000,
       get: 1000,
       mget: 1000,
       msearch: 1000
