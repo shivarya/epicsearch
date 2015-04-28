@@ -1,4 +1,5 @@
 var 
+  debug = require('debug')('IndexByUnique'),
   elasticsearch = require('elasticsearch'),
   _ = require('underscore'),
   fns = {
@@ -34,16 +35,18 @@ var EpicSearch = function(config){
   es = this.es
 
   _.keys(fns)
-  .forEach(function(fn){
-    if(es[fn]){
-      es.native[fn] = es[fn].bind(es)
+  .forEach(function(fnName){
+    if(es[fnName]){
+      es.native[fnName] = es[fnName].bind(es)
     }  
     
-    var f = require(fns[fn]),
-    g = new f(es)
-    es[fn] = function(){
-      return aggregator.agg(fn,g,arguments)
+    var f = require(fns[fnName])
+    f = new f(es)
+    var aggregated = function(){
+      return aggregator.agg(fnName,f,arguments)
     }
+    es[fnName] = aggregated
+    es[fnName].native = f
   })
 }
 
