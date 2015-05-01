@@ -1,5 +1,5 @@
 var 
-  debug = require('debug')('IndexByUnique'),
+  debug = require('debug')('EpicSearch/Index'),
   elasticsearch = require('elasticsearch'),
   _ = require('underscore'),
   fns = {
@@ -21,11 +21,11 @@ var EpicSearch = function(config){
     config = require(config)
   }
   
-  this.es = new elasticsearch.Client(config.clientParams)
+  this.es = new elasticsearch.Client(_.clone(config.clientParams))
   this.es.native = {}
 
   if(config.cloneClientParams) {
-    this.es.cloneClient = new elasticsearch.Client(config.cloneClientParams)
+    this.es.cloneClient = new elasticsearch.Client(_.clone(config.cloneClientParams))
   }
   
   this.es.config = config
