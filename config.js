@@ -15,15 +15,16 @@ module.exports =   {
       query_index: 'queries'
     },
     batch_sizes: {
-      mpu:2,
+      mpu: 2,
       msearch: 2, 
       mget: 2,
-      get:2,
-      bulk_index:2 
+      get: 2,
+      bulk_index: 2,
+      search: 1 
     },
     timeouts: {
       index_by_unique: 1000,
-      get_first:20,
+      get_first: 20,
       bulk_index: 1000,
       get: 1000,
       mget: 1000,
