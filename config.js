@@ -14,11 +14,14 @@ module.exports =   {
     percolate:{
       query_index: 'queries'
     },
+    resultContainers: {
+      msearch: 'responses'
+    },
     batch_sizes: {
       mpu: 2,
       msearch: 2, 
       mget: 2,
-      get: 2,
+      get: 10,
       bulk_index: 2,
       search: 1//This is required as 1, since search internally 
       //uses msearch and stripArrayResponses doesn'y work if timeout or size is not set 

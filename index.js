@@ -22,7 +22,7 @@ var EpicSearch = function(config){
   }
   
   this.es = new elasticsearch.Client(_.clone(config.clientParams))
-  this.es.native = {}
+  //this.es.native = {}
 
   if(config.cloneClientParams) {
     this.es.cloneClient = new elasticsearch.Client(_.clone(config.cloneClientParams))
@@ -36,17 +36,15 @@ var EpicSearch = function(config){
 
   _.keys(fns)
   .forEach(function(fnName){
-    if(es[fnName]){
-      es.native[fnName] = es[fnName].bind(es)
-    }  
     
-    var f = require(fns[fnName])
-    f = new f(es)
-    var aggregated = function(){
-      return aggregator.agg(fnName,f,arguments)
+    var fn = require(fns[fnName])
+    fn = new fn(es)
+    var aggregatedFn = function() {
+      return aggregator.agg(fnName, fn, arguments)
     }
-    es[fnName] = aggregated
-    es[fnName].native = f
+
+    es[fnName] = es[fnName] || aggregatedFn
+    es[fnName].agg = aggregatedFn
   })
 }
 
