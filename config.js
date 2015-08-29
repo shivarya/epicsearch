@@ -19,7 +19,7 @@ module.exports =   {
       msearch: 2, 
       index: 20,
       mget: 2,
-      get: 2,
+      get: 1,
       bulk_index: 2,
       search: 1//This is required as 1, since search internally 
       //uses msearch and stripArrayResponses doesn'y work if timeout or size is not set 
@@ -29,7 +29,7 @@ module.exports =   {
       index_by_unique: 1000,
       get_first: 20,
       bulk_index: 1000,
-      get: 6500,
+      get: 0,
       mget: 1000,
       msearch: 1000
     }
