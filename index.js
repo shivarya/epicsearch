@@ -7,14 +7,14 @@ var
     mget: './lib/get/mget',
     search: './lib/search/index',
     msearch: './lib/search/multi_search',
-    mpu : './lib/percolate/mpu',
-    get_first : './lib/get/first',
-    get_dups : './lib/get/dups',
-    delete_dups : './lib/delete/delete_dups',
-    find_and_delete_dups : './lib/delete/find_delete_dups',
+    mpu: './lib/percolate/mpu',
+    get_first: './lib/get/first',
+    get_dups: './lib/get/dups',
+    delete_dups: './lib/delete/delete_dups',
+    find_and_delete_dups: './lib/delete/find_delete_dups',
     index_by_unique: './lib/index/byUniqueKey',
-    bulk_index : './lib/index/bulk',
-    index : './lib/index/index'
+    bulk_index: './lib/index/bulk',
+    index: './lib/index/index'
   }
 
 var EpicSearch = function(config){
