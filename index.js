@@ -1,4 +1,4 @@
-var 
+var
   debug = require('debug')('EpicSearch/Index'),
   elasticsearch = require('elasticsearch'),
   _ = require('underscore'),
@@ -21,23 +21,23 @@ var EpicSearch = function(config){
   if (typeof config === 'string'){//it is path to config
     config = require(config)
   }
-  
+ 
   this.es = new elasticsearch.Client(_.clone(config.clientParams))
   //this.es.native = {}
 
   if (config.cloneClientParams) {
     this.es.cloneClient = new elasticsearch.Client(_.clone(config.cloneClientParams))
   }
-  
+ 
   this.es.config = config
-  
+ 
   var Aggregator = require('./lib/aggregator'),
   aggregator = new Aggregator(config),
   es = this.es
 
   _.keys(fns)
   .forEach(function(fnName){
-    
+   
     var fn = require(fns[fnName])
     fn = new fn(es)
     var aggregatedFn = function() {
