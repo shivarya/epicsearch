@@ -18,14 +18,14 @@ var
   }
 
 var EpicSearch = function(config){
-  if(typeof config === 'string'){//it is path to config
+  if (typeof config === 'string'){//it is path to config
     config = require(config)
   }
   
   this.es = new elasticsearch.Client(_.clone(config.clientParams))
   //this.es.native = {}
 
-  if(config.cloneClientParams) {
+  if (config.cloneClientParams) {
     this.es.cloneClient = new elasticsearch.Client(_.clone(config.cloneClientParams))
   }
   
