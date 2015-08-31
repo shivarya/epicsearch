@@ -37,7 +37,7 @@ var EpicSearch = function(config) {
 
   _.keys(fns)
   .forEach(function(fnName) {
-  
+ 
     var fn = require(fns[fnName])
     fn = new fn(es)
     var aggregatedFn = function() {
