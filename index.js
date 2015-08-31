@@ -17,8 +17,8 @@ var
     index: './lib/index/index'
   }
 
-var EpicSearch = function(config){
-  if (typeof config === 'string'){//it is path to config
+var EpicSearch = function(config) {
+  if (typeof config === 'string') {//it is path to config
     config = require(config)
   }
 
@@ -36,7 +36,7 @@ var EpicSearch = function(config){
   es = this.es
 
   _.keys(fns)
-  .forEach(function(fnName){
+  .forEach(function(fnName) {
   
     var fn = require(fns[fnName])
     fn = new fn(es)
@@ -49,7 +49,7 @@ var EpicSearch = function(config){
   })
 }
 
-module.exports = function(config){
+module.exports = function(config) {
   return new EpicSearch(config).es
 }
 
