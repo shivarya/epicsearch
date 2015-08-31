@@ -31,15 +31,16 @@ var EpicSearch = function(config) {
 
   this.es.config = config
 
-  var Aggregator = require('./lib/aggregator'),
-  aggregator = new Aggregator(config),
-  es = this.es
+  var Aggregator = require('./lib/aggregator')
+  var aggregator = new Aggregator(config)
+  var es = this.es
 
   _.keys(fns)
   .forEach(function(fnName) {
- 
-    var fn = require(fns[fnName])
-    fn = new fn(es)
+
+    var AggregatingFunction = require(fns[fnName])
+    var fn = new AggregatingFunction(es)
+
     var aggregatedFn = function() {
       return aggregator.agg(fnName, fn, arguments)
     }
