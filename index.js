@@ -1,7 +1,7 @@
 var
   debug = require('debug')('EpicSearch/Index'),
   elasticsearch = require('elasticsearch'),
-  _ = require('underscore'),
+  _ = require('lodash'),
   fns = {
     get: './lib/get/index',
     mget: './lib/get/mget',
