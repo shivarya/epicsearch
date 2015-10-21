@@ -2,15 +2,16 @@
 
 Request batching for heavy load performance optimization and some useful utlity methods added on top of Elasticsearch's official nodejs module v ^8.0.1
 
-Installation
+###Installation
 
 npm install epicsearch
 
-Setup
+###Setup
 
 ```
 var epicsearch = require('epicsearch')
-var es = new epicsearch(config) //These two lines replace your require('elasticsearch') and new elasticsearch.client(config) calls
+var es = new epicsearch(config) 
+//These two lines replace your require('elasticsearch') and new elasticsearch.client(config) calls
 ```
 
 The config will look something like this
