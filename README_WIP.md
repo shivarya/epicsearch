@@ -158,11 +158,22 @@ indexed by uniqueness
 ```
 
 ####bulk_index
-es.bulk_index([{a:2},{a:3,_id:1}],{index:'test',type:'test'}).then
-Shorter expression for ES bulk_index
+Shorter expression for bulk indexing
 
-es.delete_dups({key:"url",size:1000,del_sort:{fetch_time:"desc"},index:"test",type:"test",multi_key:"url"}).then
-Delete all the duplicate from an index/type, for some field
+```
+  es.bulk_index({
+    docs: [{url: 13},{url: '1233r', _id: 1}], 
+    index: 'test', 
+    type: 'test'
+  })
+  .then(debug)
+
+/**
+Response:
+{"took":4,"errors":true,"items":[{"create":{"_index":"test","_type":"test","_id":"tPCohIFzQxO5jPdYHBdWIw","_version":1,"status":201}},{"index":{"_index":"test","_type":"test","_id":"1","status":400,"error":"MapperParsingException[failed to parse [url]]; nested: NumberFormatException[For input string: \"1233r\"]; "}}]}
+**/
+
+```
 
 Dumping data to multiple destinations Uncomment the cloneClientParams to also bulk index data into another destination. Useful when you want copy of your data elsewhere.
 
@@ -173,8 +184,5 @@ This module is being built (and gifted) with <3, for epicbeat.epictions.com and 
 
 Things to do
 
-Better documentation
-Test cases in mocha/chai-as-promised [low-prio]
-Add bulk batching for more elasticsearch methods: delete, update, bulk
-Performance bechmarks [low prio]
-Keep checking out for more updates.
+* Test cases in mocha/chai-as-promised [low-prio]
+* Add bulk batching for more elasticsearch methods: delete, update, bulk
