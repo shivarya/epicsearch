@@ -167,7 +167,7 @@ indexed by uniqueness
 ```
 
 ####bulk_index
-Shorter expression for bulk indexing
+Shorter expression for bulk indexing. If you use cloneClientParams in config, this will also flush the bulk indexes to the other destination.
 
 ```
   es.bulk_index({
@@ -206,4 +206,14 @@ Response
 **/
 ```
 
-**Being made with love at [Ghoomakad hackerspace @ Infinity](http://hackerspaces.org/wiki/infinity)**
+#### Multi Percolate and Update
+Use this to match any documents with stored percolate queries. Each query has an update logic set in it. For all queries matched,
+the input document is updated as per the update logic in the query. 
+You will find more details in the lib/percolate/mpu and lib/mem/get and lib/mem/update files. 
+I need to consolidate the documentation for this. If you really need to use this urgently, then raise an issue.
+
+####This is it for now
+**If you want any more features, send me a pull request or raise an issue**
+
+####BEING MADE WITH LOVE
+**In the Himalayas, at [Ghoomakad hackerspace @ Infinity](http://hackerspaces.org/wiki/infinity)**
