@@ -175,7 +175,27 @@ Response:
 
 ```
 
-Dumping data to multiple destinations Uncomment the cloneClientParams to also bulk index data into another destination. Useful when you want copy of your data elsewhere.
+####get_dups
+
+```
+/**
+ * Returns values for a given key which have duplicates, with count of docs for each value
+ *
+ * @param index
+ * @param type
+ * @param key the key by which to find dups
+ * @param size Optional. how many dups you want. Default is 10
+ * @param shardSize Optional. Since aggregation is used inside. You may want a high enough value of shardSize for more accuracy of duplicate counts. Default is 1000000
+ */
+
+  es.get_dups({key: 'url', index: 'test', type: 'test'})
+  .then(debug)
+
+/**
+Response
+ [ { val: 13, doc_count: 2 } ]
+**/
+```
 
 es.mpu({query_index: "queries",Docs:docs}).then
 You can do document transformations on top of a steadily flowing input stream of tweets. Allows you to update JSON documents with rules/update logic registered as percolate queries in your Elasticsearch instanced. The update logic has JSON based DSL, which is documented in percolator/mpu.js
