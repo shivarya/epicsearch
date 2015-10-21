@@ -67,7 +67,15 @@ es.{method}.agg(esMethodParams)
 ``` 
 Request and response format is designed to be same as ES. 
 
-Currently supporting batching for methods: index, index_by_unique, get_first, bulk_index, get, mget, search, msearch
+**Currently supporting batching for methods:** 
+* index
+* index_by_unique
+* get_first
+* bulk_index
+* get
+* mget
+* search
+* msearch
 
 ###FUNCTIONAL FEATURES
 
