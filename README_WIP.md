@@ -71,46 +71,93 @@ Currently supporting batching for methods: index, index_by_unique, get_first, bu
 
 ###FUNCTIONAL FEATURES
 
-GET_FIRST
+####get_first
 
-Elasticsearch does not support uniqueness constraint. In case your store tends to accumulate duplicates over time, the primary document with field===val can be identified by applying a sort. This function returns that doc, and also the count of docs matching given key/val in the index/type supplied.
+Elasticsearch does not support uniqueness constraint. In case your store tends to accumulate duplicates over a unique key over time, the primary document for that key can be identified (by applying a sort or even without it). This function returns that doc, and also the count of docs matching given key/val in the index/type supplied.
 
+```
 /**
- *Gives first document with field===value, and the total documents
- *matching field===value. Uses sort to determine the first document. 
+ * Different version that native elasticsearch get. It returns
+ * first document matching a particular key === value condition.
+ * If not found, it returns {total: 0}. Uses search with sort internally.
  *
  *@param index The index to search on. Default is config.default_index
- *@param type The type of document to be matched. Default is config.default_type
- *@param field The field on which to do term query to get first document matching it
- *@param val The value to match for given field
- *@param match The type of match to do like match_phrase. If not specified, term match is done. 
- *@param sort How to sort the duplicates for field:  val
- *@param fields array of stored fields to fetch from ES object. Optional. If not specified the whole object is returned. 
+ *@param type The type of document to be matched. Default is epicdoc
+ *@param key The field on which to do term query to get first document matching it
+ *@param val The value to match for given key
+ *@param match Optional. The type of match to do like match_phrase. If not specified, term match is done
+ *@param sort How to sort the duplicates for key:  val
+ *@param fields array of stored fields to fetch from ES object. Optional. If not specified the whole object is returned
  */
-  es.getFirst({
+  es.get_first({
     index: 'infinity', 
     type: 'members', 
-    field: 'tags', 
-    val: ['silv3r','vaibhav']},
+    key: 'tags', 
+    val: ['silv3r','vaibhav'],
     sort: {memberSince: 'desc'},
     fields: ['profileUrl']
   ).then(function(res) {
     console.log(res)
   })
+  
+  /**
+  Response
+  [{ doc: { profileUrl: 'http://github.com/mastersilv3r', _id: '1' }, total: 2 }, {total: 0}]
+  **/
 
-PAUSE
-Rest of the documentation is in progress..If you are curious about the below mentioned methods, read the albeit outdated description below. Real useful will be to run the tests and see the comments in each function's source file.
+```
 
-Ex. lib/get/first.js. DEBUG=* node lib/get/first.js
+####index_by_unique
 
-DEBUG=* node lib/{fnCategory}/{fnName}.js
+ Workaround for lack of unique id limitation of Elasticsearch. 
+ This helps you index (or override existing) docs based on 
+ "unique ids" stored in the key field. Uses get_first internally to 
+ get the first documents for given key, and then overwrites those 
+ documents with supplied docs
 
-Signing off for now.. 3:02 AM, 1/8/15
+```
+/**
+ *
+ *@param index The index to insert in
+ *@param type The type of document to be inserted
+ *@param doc|docs the doc(s) to be saved. Can be array or single element. Response is array or single element accordingly
+ *@param key The unique field by which to do matches and get 'first' document from ES to overwrite (if it exists)
+ *@param sort Optional. In case duplicates exist, the one to be on top of sort result will be overwritten by the input doc. If this is not specified, the document that gets overwritten is arbitrarily chosen.
+ **/
 
-RESUME
-es.save_dedup({doc:{...},key:"url.unanalyzed",value:"epicbeat.epictions.com",index:"test",type:"test"}).then
-Workaround for lack of unique id limitation of Elasticsearch. This helps you index (or override existing) docs based on "unique ids" stored in the key field.
 
+  es.index_by_unique({
+    index: 'test',
+    type: 'test',
+    docs: [{ url: '13', sortField: 23}, {url: '13', sortField: 24}]
+    key: 'url',
+    sort: {sortField: 'desc'},
+    match: 'match_phrase',
+  })
+  .then(function(res) {
+    debug('indexed by uniqueness', res)
+  })
+
+/**
+indexed by uniqueness 
+  [{ index: 
+     { _index: 'test',
+       _type: 'test',
+       _id: 'd77WvroaTruYJ-3MdJ6TXA',
+       _version: 3,
+       status: 200 } },
+  { index: 
+     { _index: 'test',
+       _type: 'test',
+       _id: 'd77WvroaTruYJ-3MdJ6TXA',
+       _version: 4,
+       status: 200 } 
+  }]
+**/
+
+```
+
+####bulk_index
 es.bulk_index([{a:2},{a:3,_id:1}],{index:'test',type:'test'}).then
 Shorter expression for ES bulk_index
 
