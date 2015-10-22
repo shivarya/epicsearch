@@ -1,7 +1,7 @@
 {
   "name": "epicsearch",
-  "version": "1.4.1",
-  "description": "Performance and utility extension, and drop in replacement, to Elasticsearch Nodejs client",
+  "version": "1.4.2",
+  "description": "Elasticsearch in Nodejs made better: Query batching for heavy load scenarios and some utility functions",
   "main": "index.js",
   "directories": {
     "test": "test"
