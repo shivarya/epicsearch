@@ -1,6 +1,6 @@
 #Elasticsearch in nodejs ++
 
-Request batching for heavy load performance optimization and some useful utlity methods added on top of Elasticsearch's official nodejs module v ^8.0.1
+Request batching for heavy load performance optimization and some useful utlity methods added on top of Elasticsearch's official nodejs module v ^10.0.1
 
 ###Installation
 
