@@ -1,6 +1,6 @@
 {
   "name": "epicsearch",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Elasticsearch in Nodejs made better: Query batching for heavy load scenarios and some utility functions",
   "main": "index.js",
   "directories": {
