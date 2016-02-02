@@ -14,6 +14,7 @@ var
     find_and_delete_dups: './lib/delete/find_delete_dups',
     index_by_unique: './lib/index/byUniqueKey',
     bulk_index: './lib/index/bulk',
+    bulk: './lib/bulk',
     index: './lib/index/index',
     crudRead: './lib/crud/read',
     crudUpdate: './lib/crud/update'
@@ -36,7 +37,7 @@ var EpicSearch = function(config) {
   var Aggregator = require('./lib/aggregator')
   var aggregator = new Aggregator(config)
   var es = this.es
-  
+
   _.keys(fns)
   .forEach(function(fnName) {
 
