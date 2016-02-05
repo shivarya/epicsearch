@@ -27,7 +27,6 @@ var EpicSearch = function(config) {
 
   this.es = new elasticsearch.Client(_.clone(config.clientParams))
   //this.es.native = {}
-
   if (config.cloneClientParams) {
     this.es.cloneClient = new elasticsearch.Client(_.clone(config.cloneClientParams))
   }
@@ -48,7 +47,24 @@ var EpicSearch = function(config) {
       return aggregator.agg(fnName, fn, arguments)
     }
 
-    es[fnName] = es[fnName] || aggregatedFn
+    es[fnName] = function() {//with whatever arguments
+      var innerFunction = es[fnName] || aggregatedFn
+      //do entity level role check
+      var roleCheck = require('lib/' + fnName + '/roleCheck')
+
+      return roleCheck.pre.apply(null, arguments)
+      .then(function() { 
+        return innerFunction.apply(null, arguments) 
+      })
+      .then(function() { 
+        return roleCheck.post.apply(null, arguments)
+      })
+      
+      //check document level r ole check
+      //if check passes call innerFunction()
+      //Filter out docs which are not allowed to be read by this role. doreturn response
+    }
+
     es[fnName].agg = aggregatedFn
   })
 }
