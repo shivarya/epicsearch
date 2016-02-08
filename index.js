@@ -21,12 +21,12 @@ var
   }
 
 var EpicSearch = function(config) {
-  if (typeof config === 'string') {//it is path to config
+  if (typeof config === 'string') { //it is path to config
     config = require(config)
   }
 
   this.es = new elasticsearch.Client(_.clone(config.clientParams))
-  //this.es.native = {}
+    //this.es.native = {}
   if (config.cloneClientParams) {
     this.es.cloneClient = new elasticsearch.Client(_.clone(config.cloneClientParams))
   }
@@ -38,39 +38,54 @@ var EpicSearch = function(config) {
   var es = this.es
 
   _.keys(fns)
-  .forEach(function(fnName) {
+    .forEach(function(fnName) {
 
-    var AggregatingFunction = require(fns[fnName])
-    var fn = new AggregatingFunction(es)
+      var AggregatingFunction = require(fns[fnName])
+      var fn = new AggregatingFunction(es)
 
-    var aggregatedFn = function() {
-      return aggregator.agg(fnName, fn, arguments)
-    }
+      var aggregatedFn = function() {
+        return aggregator.agg(fnName, fn, arguments)
+      }
 
-    es[fnName] = function() {//with whatever arguments
-      var innerFunction = es[fnName] || aggregatedFn
-      //do entity level role check
-      var roleCheck = require('lib/' + fnName + '/roleCheck')
+      var nativeEsFunction = es[fnName] || aggregatedFn
 
-      return roleCheck.pre.apply(null, arguments)
-      .then(function() { 
-        return innerFunction.apply(null, arguments) 
-      })
-      .then(function() { 
-        return roleCheck.post.apply(null, arguments)
-      })
-      
-      //check document level r ole check
-      //if check passes call innerFunction()
-      //Filter out docs which are not allowed to be read by this role. doreturn response
-    }
+      es[fnName] = function() { // with whatever arguments
 
-    es[fnName].agg = aggregatedFn
-  })
+        var originalArguments = arguments
+
+        // do entity level role check
+
+        var roleCheck = require('./lib/' + fnName + '/roleCheck')
+        var preWithConfig = roleCheck.pre.bind(null, config)
+
+        // var postWithConfig = roleCheck.post.bind(null, config)
+
+        return preWithConfig.apply(null, originalArguments)
+          .then(function() {
+
+            return nativeEsFunction.apply(es, originalArguments)
+          })
+          .catch(function(err) {
+
+            debug(err)
+
+            return err 
+          })
+          /*  .then(function(res) {
+            return postWithConfig.apply(null, res)
+          })
+          */
+
+        // check document level role check
+        // if check passes call innerFunction()
+        // Filter out docs which are not allowed to be read by this role. doc return response
+      }
+
+      es[fnName].agg = aggregatedFn
+    })
 }
 
 
 module.exports = function(config) {
   return new EpicSearch(config).es
 }
-
