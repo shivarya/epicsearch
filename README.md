@@ -216,4 +216,4 @@ I need to consolidate the documentation for this. If you really need to use this
 **If you want any more features, send me a pull request or raise an issue**
 
 ####BEING MADE WITH LOVE
-**In the Himalayas, at [Ghoomakad hackerspace @ Infinity](http://hackerspaces.org/wiki/infinity)**
+**In the Himalayas, at [Infinity hackerspace @ Ghoomakad](http://hackerspaces.org/wiki/infinity)**

@@ -6,11 +6,14 @@ var configs = require('./configs')
 
 var es = new EpicSearch(configs)
 
-es.get({
-    id: 2,
-    index: 'events',
-    type: 'event',
-    role: 1 
+es.mget({
+    body: {
+      docs: [{
+        _id: 2,
+        _index: 'events',
+        _type: 'event'
+      }]
+    }
   })
   .then(debug)
   .catch(debug)

@@ -4,7 +4,7 @@ var
   _ = require('lodash'),
   fns = {
     get: './lib/get/index',
-    mget: './lib/get/mget',
+    mget: './lib/mget/index',
     search: './lib/search/index',
     msearch: './lib/search/multi_search',
     mpu: './lib/percolate/mpu',
@@ -57,24 +57,23 @@ var EpicSearch = function(config) {
 
         var roleCheck = require('./lib/' + fnName + '/roleCheck')
         var preWithConfig = roleCheck.pre.bind(null, config)
-
-        // var postWithConfig = roleCheck.post.bind(null, config)
+        var postWithConfig = roleCheck.post.bind(null, config)
+        var docs
 
         return preWithConfig.apply(null, originalArguments)
-          .then(function() {
+          .then(function(docsToResolve) {
 
+            docs = docsToResolve
+            
             return nativeEsFunction.apply(es, originalArguments)
           })
+          .then(function(res) {
+
+            return postWithConfig.apply(null, [res, docs])
+          })
           .catch(function(err) {
-
-            debug(err)
-
-            return err 
+            return err
           })
-          /*  .then(function(res) {
-            return postWithConfig.apply(null, res)
-          })
-          */
 
         // check document level role check
         // if check passes call innerFunction()
@@ -84,7 +83,6 @@ var EpicSearch = function(config) {
       es[fnName].agg = aggregatedFn
     })
 }
-
 
 module.exports = function(config) {
   return new EpicSearch(config).es
