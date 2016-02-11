@@ -6,11 +6,10 @@ var configs = require('./configs')
 
 var es = new EpicSearch(configs)
 
-es.get.agg({
+es.get.collect({
     index: 'events',
     type: 'event',
-    id: '2',
-    role: 1
+    id: '2'
   })
   .then(function(r) {
     debug('res', JSON.stringify(r))
