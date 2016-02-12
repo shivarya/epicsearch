@@ -10,7 +10,11 @@ es.get({
     id: 2,
     index: 'events',
     type: 'event',
-    role: 1 
+    role: 1
   })
-  .then(debug)
-  .catch(debug)
+  .then(function(r) {
+    debug('res', JSON.stringify(r))
+  })
+  .catch(function(err) {
+    error('errored out', err)
+  })
